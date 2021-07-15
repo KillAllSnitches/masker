@@ -6,6 +6,8 @@
 import requests
 import sys
 import colorama
+import os
+import pyperclip
 from colorama import Fore as col
 from colorama import Style as st
 from colorama import init, Fore, Style, Back
@@ -33,10 +35,9 @@ class Exploit:
         return requests.post(f'https://discordapp.com/api/v6/channels/{self.channel_id}/messages', headers=self.headers, json={'content': self._generate_message(self.message, self.hidden_message)})
 
    ## Noob Friendly CLI Tweak by vx#1234 
-def main():
-    print(f"""{c}
-    
-                                                               
+def logo():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(f"""{c}                                              
 {col.LIGHTYELLOW_EX}@@@@@@@@@@    @@@@@@    @@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@   
 {col.LIGHTYELLOW_EX}@@@@@@@@@@@  @@@@@@@@  @@@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@@  
 {col.LIGHTYELLOW_EX}@@! @@! @@!  @@!  @@@  !@@       @@!  !@@  @@!       @@!  @@@  
@@ -52,9 +53,25 @@ def main():
 {col.LIGHTYELLOW_EX}        use your browser to get the channel id for dms
 {col.LIGHTYELLOW_EX}-------------------------------------------------------------
 
-
     """)
-    
+def menu():
+    logo()
+    print("""
+    [1] Local | Copies to clipboard
+    [2] Remote | send message remotely
+    """)
+    print("")
+    mode = input('Mode: ')
+    if mode == '1':
+        local()
+    elif mode == '2':
+        remote()
+def local():
+    logo()
+    pyperclip.copy('real message ||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| hidden text')
+
+def remote():
+    logo()
     token = input("Token: ")
     channel_id = input("Channel ID:")
     message = input("Message: ")
@@ -63,8 +80,8 @@ def main():
     exploit = Exploit(token, channel_id, message, hidden_message)
 
     exploit.execute()
-main()
+menu()
 
 
 if __name__ == '__main__':
-    main()
+    menu()
